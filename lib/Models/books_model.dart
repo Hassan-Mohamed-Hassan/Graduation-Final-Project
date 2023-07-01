@@ -5,13 +5,13 @@ class Book {
   String? description;
   String image;
   String book;
-  String views;
-  String size;
+  dynamic views;
+  dynamic size;
   int teacherId;
   int subjectId;
   String createdAt;
   String updatedAt;
-  var ratesSumRate;
+  dynamic ratesSumRate;
   int ratesCount;
   int studentRate;
   Teacher teacher;
@@ -38,7 +38,7 @@ class Book {
     return Book(
       id: json['id'],
       name: json['name'],
-      description: json['description'],
+      description: json['description']==null?'not found description':json['description'],
       image: json['image'],
       book: json['book'],
       views: json['views'],

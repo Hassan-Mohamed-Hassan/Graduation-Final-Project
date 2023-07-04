@@ -191,14 +191,17 @@ var answer=TextEditingController();
       } ,
       child: Container(
         height: 40,
-        color: defaultColor,
-        child:Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(icon,color: Colors.white,),
-            SizedBox(width:5 ,),
-            Text(text,style:TextStyle(color: Colors.white) ,)
-          ],
+        color: secondColor,
+        child:Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(icon,color: Colors.white,),
+              SizedBox(width:5 ,),
+              Text(text,style:TextStyle(color: Colors.white) ,)
+            ],
+          ),
         ),
       ),
     );

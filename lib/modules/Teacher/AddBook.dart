@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
+import 'package:untitled15/constants/constants.dart';
 
 import '../../constants/Comonent.dart';
 import 'Bloc/Cubit.dart';
@@ -80,7 +81,7 @@ class AddBook extends StatelessWidget {
                           cubit.imageData ==null?
                           Container(
                             margin: EdgeInsets.all(1),
-                            height: 15,
+                            height: 20,
                             child: Text('Please Upload Image'),
                           ):CircleAvatar(
                             radius: 40,
@@ -101,7 +102,7 @@ class AddBook extends StatelessWidget {
                             height: 40,
                             width: 200,
                             decoration: BoxDecoration(
-                                color: Colors.red,
+                                color: secondColor,
                                 borderRadius: BorderRadius.circular(15)
                             ),
                             child: MaterialButton(onPressed: (){

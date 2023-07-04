@@ -138,30 +138,7 @@ var email=TextEditingController();
       ),
     );
   }
-  Widget BuiltContainerButton(
-      {
-        required  Function function,
-        required IconData icon,
-        required String text
-      }
-      ){
-    return InkWell(
-      onTap: (){
-        function();
-      } ,
-      child: Container(
-        height: 40,
-        color: Colors.red,
-        child:Row(
-          children: [
-            Icon(icon,color: Colors.white,),
-            SizedBox(width:5 ,),
-            Text(text,style:TextStyle(color: Colors.white) ,)
-          ],
-        ),
-      ),
-    );
-  }
+
   Widget BuiltItemRow(StudentsDetails details,Students model,context){
     return Padding(
       padding: const EdgeInsets.all(8.0),

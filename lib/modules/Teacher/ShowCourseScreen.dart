@@ -42,61 +42,53 @@ Widget build(BuildContext context) {
                 condition: state is! GetCourseByIdLoadingState,
                 builder: (context)=>Padding(
                   padding: EdgeInsets.all(10),
-                  // height: 500,
+
                   child: ListView(
-
-                    //crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
-                        child: Container(
-                          height: 200,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Expanded(
-                                flex:2,
-                                child: Container(
-                                  height: 200,
-                                    child: SizedBox(child: SizedBox(height:300,child: Image.network('${cubit.courseByIDModel!.course![0].image}')))),
+                      SizedBox(
+                        height: 200,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              child: SizedBox(height:200,child: Image.network('${cubit.courseByIDModel!.course![0].image}',fit: BoxFit.fill,)),
+                            ),
+                            SizedBox(width: 20,),
+                            Expanded(
+                              child: Column(
+
+                                crossAxisAlignment: CrossAxisAlignment.start,
+
+                                children: [
+                                  Text('${cubit.courseByIDModel!.course![0].name}',maxLines:2,overflow:TextOverflow.ellipsis,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+                                  SizedBox(height: 10,),
+                                  Text('${cubit.courseByIDModel!.course![0].teacher!.name}'),
+                                  SizedBox(height: 10,),
+                                  Text('${cubit.courseByIDModel!.course![0].videosSumLength} minutes'),
+                                  SizedBox(height: 10,),
+                                  Text('${cubit.courseByIDModel!.course![0].createdAt!.createdAt}'),
+                                  SizedBox(height: 10,),
+                                  Text('${cubit.courseByIDModel!.course![0].createdAt!.createdAtDate}'),
+                                  SizedBox(height: 10,),
+                                  RatingBar.builder(
+                                    itemBuilder: (context,i)=>Icon(Icons.star,color: Colors.amber,),
+                                    onRatingUpdate: (index){
+
+                                    },
+                                    itemCount: 5,
+                                    itemPadding: EdgeInsets.symmetric(horizontal: 5),
+                                    initialRating: cubit.courseByIDModel!.course![0].ratesCount!.toDouble(),
+                                    itemSize: 15,
+                                    direction: Axis.horizontal,
+                                    minRating: cubit.courseByIDModel!.course![0].ratesCount!.toDouble(),
+                                    maxRating: 5,
+
+                                  ),
+
+                                ],
                               ),
-                              SizedBox(width: 10,),
-                              Expanded(
-                                flex: 1,
-                                child: Column(
-
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-
-                                  children: [
-                                    Text('${cubit.courseByIDModel!.course![0].name}',maxLines:2,overflow:TextOverflow.ellipsis,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
-                                    SizedBox(height: 10,),
-                                    Text('${cubit.courseByIDModel!.course![0].teacher!.name}'),
-                                    SizedBox(height: 10,),
-                                    Text('${cubit.courseByIDModel!.course![0].videosSumLength} minutes'),
-                                    SizedBox(height: 10,),
-                                    Text('${cubit.courseByIDModel!.course![0].createdAt!.createdAt}'),
-                                    SizedBox(height: 10,),
-                                    Text('${cubit.courseByIDModel!.course![0].createdAt!.createdAtDate}'),
-                                    SizedBox(height: 10,),
-                                    RatingBar.builder(
-                                      itemBuilder: (context,i)=>Icon(Icons.favorite,color: Colors.deepOrange,size: 16,),
-                                      onRatingUpdate: (index){
-
-                                      },
-                                      itemCount: 5,
-                                      itemPadding: EdgeInsets.symmetric(horizontal: 5),
-                                      initialRating: cubit.courseByIDModel!.course![0].ratesCount!.toDouble(),
-                                      itemSize: 12,
-                                      direction: Axis.horizontal,
-                                      minRating: cubit.courseByIDModel!.course![0].ratesCount!.toDouble(),
-                                      maxRating: 5,
-
-                                    ),
-
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                       SizedBox(height: 20,),
@@ -115,68 +107,65 @@ Widget build(BuildContext context) {
                       ),
                       SizedBox(height: 10,),
                       cubit.courseByIDModel!.course![0].videos!.length !=0 ?
-                      Expanded(
-                        child: ListView.separated(
-                            shrinkWrap: true,
-                            physics: NeverScrollableScrollPhysics(),
-                            itemBuilder: (context,index)=>Container(
-                              height: 160,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
+                      ListView.separated(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          itemBuilder: (context,index)=>Container(
+                            height: 160,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
 
 
-                                  Card(
-                                    elevation: 20,
-                                    child: Container(
-                                      height: 200,
-                                      color: defaultColor,
-                                      child: MaterialButton(onPressed: (){
-                                        print('http://192.168.43.200:8000/storage/files/teacherUploads/${cubit.courseByIDModel!.course![0].videos![index].video!}');
-                                        print('///////////////');
-                                        navigatePush(context:context,widget: ViewVideo(url:cubit.courseByIDModel!.course![0].videos![index].video!));
-                                        cubit.ChangeVideoPlayer(cubit.courseByIDModel!.course![0].videos![index].video!);
+                                Card(
+                                  elevation: 20,
+                                  child: Container(
+                                    height: 200,
+                                    color: secondColor,
+                                    child: MaterialButton(onPressed: (){
+                                      print('http://192.168.43.200:8000/storage/files/teacherUploads/${cubit.courseByIDModel!.course![0].videos![index].video!}');
+                                      print('///////////////');
+                                      navigatePush(context:context,widget: ViewVideo(url:cubit.courseByIDModel!.course![0].videos![index].video!));
+                                      cubit.ChangeVideoPlayer(cubit.courseByIDModel!.course![0].videos![index].video!);
+                                    },
+                                        child: Text('Show Video',style: TextStyle(color: Colors.white),)),
+                                  ),
+                                ),
+
+                                SizedBox(width: 10,),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text('${cubit.courseByIDModel!.course![0].videos![index].name}'),
+                                    SizedBox(height: 15,),
+                                    Text('${cubit.courseByIDModel!.course![0].videos![index].length} minutes'),
+                                    SizedBox(height: 15,),
+                                    Text('${cubit.courseByIDModel!.course![0].videos![index].createdAt}'),
+                                    SizedBox(height: 15,),
+                                    Text('${cubit.courseByIDModel!.course![0].createdAt!.createdAtDate}'),
+                                    SizedBox(height: 15,),
+                                    RatingBar.builder(
+                                      itemBuilder: (context,i)=>Icon(Icons.star,color: Colors.amber,size: 16,),
+                                      onRatingUpdate: (index){
                                       },
-                                          child: Text('Show Video')),
+                                      itemCount: 5,
+                                      itemPadding: EdgeInsets.symmetric(horizontal: 5),
+                                      initialRating: cubit.courseByIDModel!.course![0].ratesCount!.toDouble(),
+                                      itemSize: 15,
+                                      direction: Axis.horizontal,
+                                      minRating: cubit.courseByIDModel!.course![0].ratesCount!.toDouble(),
+                                      maxRating: 5,
+
                                     ),
-                                  ),
-
-                                  SizedBox(width: 10,),
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text('${cubit.courseByIDModel!.course![0].videos![index].name}'),
-                                      SizedBox(height: 15,),
-                                      Text('${cubit.courseByIDModel!.course![0].videos![index].length} minutes'),
-                                      SizedBox(height: 15,),
-                                      Text('${cubit.courseByIDModel!.course![0].videos![index].createdAt}'),
-                                      SizedBox(height: 15,),
-                                      Text('${cubit.courseByIDModel!.course![0].createdAt!.createdAtDate}'),
-                                      SizedBox(height: 15,),
-                                      RatingBar.builder(
-                                        itemBuilder: (context,i)=>Icon(Icons.favorite,color: Colors.deepOrange,size: 16,),
-                                        onRatingUpdate: (index){
-
-                                        },
-                                        itemCount: 5,
-                                        itemPadding: EdgeInsets.symmetric(horizontal: 5),
-                                        initialRating: cubit.courseByIDModel!.course![0].ratesCount!.toDouble(),
-                                        itemSize: 12,
-                                        direction: Axis.horizontal,
-                                        minRating: cubit.courseByIDModel!.course![0].ratesCount!.toDouble(),
-                                        maxRating: 5,
-
-                                      ),
-                                    ],
-                                  ),
+                                  ],
+                                ),
 
 
-                                ],
-                              ),
+                              ],
                             ),
-                            separatorBuilder: (context,index)=>SizedBox(height: 20,),
-                            itemCount: cubit.courseByIDModel!.course![0].videos!.length
-                        ),
+                          ),
+                           separatorBuilder: (context,index)=>SizedBox(height: 20,),
+                          itemCount: cubit.courseByIDModel!.course![0].videos!.length
                       ):Container(),
 
 
@@ -206,7 +195,7 @@ Widget BuiltContainerButton(
     } ,
     child: Container(
       height: 40,
-      color: Colors.red,
+      color: secondColor,
       child:Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

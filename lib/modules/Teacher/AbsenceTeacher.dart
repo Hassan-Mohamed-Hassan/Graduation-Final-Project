@@ -96,6 +96,7 @@ class AbsenceTeacher extends StatelessWidget {
                                   cubit.AddAbsence(id: cubit.getAbsenceTeacherTOStudentModel!.rooms![indexx].id!);
 
                                 },
+
                                 text: 'Done'
                             ):
                             Container(
@@ -142,7 +143,7 @@ class AbsenceTeacher extends StatelessWidget {
       child: Container(
           height: 40,
           width: double.infinity,
-          color: Colors.red,
+          color:secondColor,
           child:Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

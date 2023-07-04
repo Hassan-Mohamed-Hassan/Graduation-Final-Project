@@ -228,7 +228,6 @@ class EducationCubit extends Cubit<EducationStates> {
          subjectName=subject.toSet().toList();
         emit(SuccessGetSubject());
      });
-
     });
   }
 

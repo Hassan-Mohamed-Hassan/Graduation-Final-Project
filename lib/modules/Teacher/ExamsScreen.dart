@@ -104,16 +104,15 @@ var available=TextEditingController();
                                         child: SingleChildScrollView(
                                           child: AlertDialog(
                                             elevation: 20,
-
                                             backgroundColor: Colors.white,
                                             iconPadding: EdgeInsets.all(0),
                                             contentPadding: EdgeInsets.all(10),
-
                                             title:BuiltContainerButton(function: (){
                                               var id=int.parse(degree.text);
-
                                               cubit.AddExam(name: name.text, degree: id, available: 'all');
-                                            }, icon: Icons.add, text: 'Add Exam'),
+                                            }, icon: Icons.add,
+                                                color: secondColor,
+                                                text: 'Add Exam'),
                                             content: Container(
                                               //   color: Colors.grey[300],
                                               child:Column(
@@ -144,6 +143,8 @@ var available=TextEditingController();
                                       )
                                   );
                                 },
+                                width: 130,
+                                color: secondColor,
                                 icon: Icons.add,
                                 text: 'Add Exam'
                             )
@@ -160,64 +161,40 @@ var available=TextEditingController();
       ),
     );
   }
-  Widget BuiltContainerButton(
-      {
-        required  Function function,
-         IconData? icon,
-        required String text
-      }
-      ){
-    return InkWell(
-      onTap: (){
-        function();
-      } ,
-      child: Container(
-        height: 40,
-        color: defaultColor,
-        child:Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-           // Icon(icon,color: Colors.white,),
-            //SizedBox(width:5 ,),
-            Text(text,style:TextStyle(color: Colors.white) ,)
-          ],
-        ),
-      ),
-    );
-  }
+
   Widget BuiltItemRow(Exams model,CubitTeacher cubit,context){
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Card(
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(12.0),
           child: Column(
             children: [
               SizedBox(height: 20,),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text('Exam Name:',style: TextStyle(color: defaultColor),),
                   Spacer(),
-                  Expanded( flex :3,child: Text('${model.name}',maxLines:2,overflow:TextOverflow.ellipsis,)),
+                  Expanded( flex :3,child: Text('${model.name}',textAlign: TextAlign.end,maxLines:2,overflow:TextOverflow.ellipsis,)),
       ]
       ),
               SizedBox(height: 10,),
               Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text('For:',style: TextStyle(color: defaultColor),),
                     Spacer(),
-                    Expanded(flex:1,child: Text('${model.forr}')),
+                    Expanded(flex:1,child: Text('${model.forr}',textAlign: TextAlign.end,)),
                   ]
               ),
               SizedBox(height: 10,),
               Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text('Q_Number:',style: TextStyle(color: defaultColor),),
                     Spacer(),
-                    Expanded(flex:1,child: Text('${model.questionsCount}')),
+                    Expanded(flex:1,child: Text('${model.questionsCount}',textAlign: TextAlign.end,)),
                   ]
               ),
               SizedBox(height: 20,),
@@ -234,14 +211,16 @@ var available=TextEditingController();
                         text: 'Delete'
                     ),
                   ),
-                  SizedBox(width: 5,),
+                  SizedBox(width: 20,),
                   Expanded
                     (
                     flex: 1,
                     child: BuiltContainerButton(
+
                         function: (){
                           navigatePush(context:context,widget: ShowExam(id:model.id!));
                         },
+                        color: secondColor,
                         text: 'Show'
                     ),
                   ),

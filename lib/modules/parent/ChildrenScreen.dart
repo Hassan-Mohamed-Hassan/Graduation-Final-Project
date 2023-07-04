@@ -139,6 +139,7 @@ var email=TextEditingController();
                                       )
                                   );
                                 },
+                                width: 115,
                                 icon: Icons.add,
                                 text: 'Add Child'
                             )
@@ -159,7 +160,8 @@ var email=TextEditingController();
       {
         required  Function function,
         required IconData icon,
-        required String text
+        required String text,
+        double ?width,
       }
       ){
     return InkWell(
@@ -168,6 +170,7 @@ var email=TextEditingController();
       } ,
       child: Container(
         height: 40,
+        width:width,
         color: secondColor,
         child:Row(
           children: [
@@ -184,7 +187,6 @@ var email=TextEditingController();
       padding: const EdgeInsets.all(8.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
         children: [
           CircleAvatar(
             radius: 25,
@@ -192,6 +194,7 @@ var email=TextEditingController();
           ),
           Text('${model.name}'),
           BuiltContainerButton(
+            width: 90,
               function: (){
                 CubitParent.get(context).DeleteChildren(id:model.id!);
               },

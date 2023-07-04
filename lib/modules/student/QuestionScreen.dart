@@ -47,6 +47,15 @@ class _MyQuizPageViewState extends State<MyQuizPageView> {
         return Scaffold(
           appBar: AppBar(
             title: Text('My Quiz'),
+            leading: IconButton(icon: Icon(Icons.arrow_back),onPressed: (){
+                QuickAlert.show(
+                    context: context,
+                    type: QuickAlertType.info,
+                    text:
+                    'Can\'t Exit Before Submit Exam',
+
+                );
+            }),
           ),
           body: Padding(
             padding: const EdgeInsets.all(8.0),

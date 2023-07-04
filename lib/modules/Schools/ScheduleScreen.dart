@@ -169,6 +169,8 @@ class ScheduleScreen extends StatelessWidget {
                             SizedBox(height: 15,),
 
                             BuiltContainerButton(
+                                width: 120,
+                                color: secondColor,
                                 function: (){
                                   showDialog(context: context, builder: (context)=>
                                       Center(
@@ -179,12 +181,16 @@ class ScheduleScreen extends StatelessWidget {
                                             backgroundColor: Colors.white,
                                             iconPadding: EdgeInsets.all(0),
                                             contentPadding: EdgeInsets.all(10),
-
-                                            title:BuiltContainerButton(function: (){
+                                            title:BuiltContainerButton
+                                              (
+                                                function: (){
                                               //var id=int.parse(cubit.numberClass!);
 
                                               cubit.AddSchedule(period: peroid.text, roomId:cubit.secduleModel!.rooms![index].id!);
-                                            }, icon: Icons.add, text: 'Add Period'),
+                                            },
+                                                icon: Icons.add,
+                                                color: secondColor,
+                                                text: 'Add Period'),
                                             content: Container(
                                               //   color: Colors.grey[300],
                                               child: BuiltTextField(
@@ -502,6 +508,7 @@ class ScheduleScreen extends StatelessWidget {
             Row(
               children: [
                 BuiltContainerButton(
+                width: 120,
                     function: (){
                       showDialog(context: context, builder: (context)=>
                           Center(
@@ -513,11 +520,17 @@ class ScheduleScreen extends StatelessWidget {
                                 iconPadding: EdgeInsets.all(0),
                                 contentPadding: EdgeInsets.all(10),
 
-                                title:BuiltContainerButton(function: (){
+                                title:BuiltContainerButton(
+                                    width: 120,
+
+                                    function: (){
                                   // var id=int.parse(cubit.numberClass!);
 
                                   //   cubit.AddClass(idClass: id);
-                                }, icon: Icons.add, text: 'Add Period'),
+                                }
+                                , icon: Icons.add,
+                                    color: secondColor,
+                                    text: 'Add Period'),
                                 content:Text(''),
                               ),
 
@@ -526,6 +539,7 @@ class ScheduleScreen extends StatelessWidget {
                       );
                     },
                     icon: Icons.add,
+                    color: secondColor,
                     text: 'Add Period'
                 ),
                 SizedBox(width: 10,),
@@ -543,7 +557,6 @@ class ScheduleScreen extends StatelessWidget {
 
                                 title:BuiltContainerButton(function: (){
                                   // var id=int.parse(cubit.numberClass!);
-
                                   //   cubit.AddClass(idClass: id);
                                 }, icon: Icons.add, text: 'Add Lesson'),
                                 content:Text(''),
@@ -571,28 +584,4 @@ class ScheduleScreen extends StatelessWidget {
     );
   }
 
-  Widget BuiltContainerButton(
-      {
-        required  Function function,
-        required IconData icon,
-        required String text
-      }
-      ){
-    return InkWell(
-      onTap: (){
-        function();
-      } ,
-      child: Container(
-        height: 40,
-        color: Colors.red,
-        child:Row(
-          children: [
-            Icon(icon,color: Colors.white,),
-            SizedBox(width:5 ,),
-            Text(text,style:TextStyle(color: Colors.white) ,)
-          ],
-        ),
-      ),
-    );
-  }
 }

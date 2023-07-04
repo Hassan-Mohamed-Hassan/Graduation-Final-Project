@@ -95,8 +95,8 @@ class ExamScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 20,),
                 if(cubit.isSubjectsExam)
-                  cubit.subject.length!=0?Expanded(
-                  child: ListView.separated(
+                 state is SuccessGetSubject? Expanded(
+                  child:cubit.subject.length!=0? ListView.separated(
                       itemBuilder: (context,index)=> InkWell(
                         onTap: (){
                           Navigator.push(context, MaterialPageRoute(builder: (context)=>SubjectExam(cubit.subjectName[index])));
@@ -115,8 +115,9 @@ class ExamScreen extends StatelessWidget {
                       ),
                       separatorBuilder: (context,index)=>SizedBox(height: 0,),
                       itemCount: cubit.subjectName.length
-                  ),
-                ):Text('Not Found Thing',style: TextStyle(color: secondColor),),
+                  ):Text('Not Found Thing',style: TextStyle(color: secondColor),),
+                ):
+                  CircularProgressIndicator(),
                  if(cubit.isSuccessExam) Expanded(
                   child: Column(children: [
                     Container(

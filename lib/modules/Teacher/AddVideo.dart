@@ -78,31 +78,31 @@ class AddVideo extends StatelessWidget {
                                     aspectRatio: cubit.player.value.aspectRatio,
                                   child: VideoPlayer(cubit.player),
                                 ):Container()
-                          else Text('Click on pick video to selected video'),
-                          SizedBox(height: 10,),
-
-                          Container(
-                            height: 40,
-                            width: 100,
-                            color: Colors.red,
-                            child: ElevatedButton(
-                                onPressed: (){
-                                  cubit.getVideo();
-                                },
-                                child: Text('Get Video')
-                            ),
+                          else Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text('Click To Upload video',style: TextStyle(color:Colors.grey,fontSize: 14),),
+                              SizedBox(width: 8,),
+                              TextButton(
+                                  onPressed: (){
+                                    cubit.getVideo();
+                                  },
+                                  child: Text('Get Video')
+                              ),
+                            ],
                           ),
 
-
-                          SizedBox(height: 10,),
+                          SizedBox(height: 20,),
                           Container(
                             height: 40,
                             width: 200,
                             decoration: BoxDecoration(
-                                color: Colors.red,
+                                color: secondColor,
                                 borderRadius: BorderRadius.circular(15)
                             ),
-                            child: MaterialButton(onPressed: (){
+                            child: MaterialButton(
+
+                              onPressed: (){
 
                               cubit.AddVideo(
                                   name:name.text,

@@ -74,15 +74,15 @@ class ExamsChildren extends StatelessWidget  {
                           ),
                           Container(
                             width: double.infinity,
-                            padding: EdgeInsets.all(10),
+                            padding: EdgeInsets.symmetric(vertical: 15),
                             child: Column(
                               children: [
                                 Row(
                                   children: [
-                                    Expanded(child: Text('Name ',maxLines:2,overflow:TextOverflow.ellipsis,style: TextStyle(fontSize: 17,color: secondColor))),
-                                    Expanded(child: Center(child: Text('Subject',maxLines:2,overflow:TextOverflow.ellipsis,style: TextStyle(fontSize: 17,color: secondColor)))),
-                                    Expanded(child: Center(child: Text('Degree',maxLines:2,overflow:TextOverflow.ellipsis,style: TextStyle(fontSize: 17,color: secondColor)))),
-                                    Expanded(child: Text('Status',maxLines:2,overflow:TextOverflow.ellipsis,style: TextStyle(fontSize: 17,color: secondColor))),
+                                    Expanded(child: Text('Name ',textAlign: TextAlign.center,maxLines:2,overflow:TextOverflow.ellipsis,style: TextStyle(fontSize: 17,color: secondColor))),
+                                    Expanded(child: Text('Subject',textAlign: TextAlign.center,maxLines:2,overflow:TextOverflow.ellipsis,style: TextStyle(fontSize: 17,color: secondColor))),
+                                    Expanded(child: Text('Degree',textAlign: TextAlign.center,maxLines:2,overflow:TextOverflow.ellipsis,style: TextStyle(fontSize: 17,color: secondColor))),
+                                    Expanded(child: Text('Status',textAlign: TextAlign.center,maxLines:2,overflow:TextOverflow.ellipsis,style: TextStyle(fontSize: 17,color: secondColor))),
                                   ],
                                 ),
 
@@ -96,7 +96,7 @@ class ExamsChildren extends StatelessWidget  {
                                 ):
                                     Padding(
                                       padding: const EdgeInsets.symmetric(vertical: 10.0),
-                                      child: Text("A student who has no exams",style: TextStyle(color: secondColor),),
+                                      child: Text("A student who has no exams",style: TextStyle(color: defaultColor),),
                                     )
 
 
@@ -133,10 +133,10 @@ class ExamsChildren extends StatelessWidget  {
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Row(
         children: [
-          Expanded(child: Text('${model.exam!.name}',maxLines:2,overflow:TextOverflow.ellipsis,style: TextStyle(fontSize: 14,),)),
-          Expanded(child: Center(child: Text('${model.exam!.subject!.subject!.name}',maxLines:2,overflow:TextOverflow.ellipsis,style: TextStyle(fontSize: 14,),))),
-          Expanded(child: Center(child: Text('${model.studentDegree}/${model.examDegree}',maxLines:2,overflow:TextOverflow.ellipsis,style: TextStyle(fontSize: 14),))),
-          Expanded(child: Text('${model.status}',maxLines:2,overflow:TextOverflow.ellipsis,style: TextStyle(fontSize: 14),)),
+          Expanded(child: Text('${model.exam!.name}',maxLines:2,overflow:TextOverflow.ellipsis,textAlign: TextAlign.center,style: TextStyle(fontSize: 14,),)),
+          Expanded(child: Center(child: Text('${model.exam!.subject!.subject!.name}',maxLines:2, textAlign: TextAlign.center,overflow:TextOverflow.ellipsis,style: TextStyle(fontSize: 14,),))),
+          Expanded(child: Center(child: Text('${model.studentDegree}/${model.examDegree}', textAlign: TextAlign.center,maxLines:2,overflow:TextOverflow.ellipsis,style: TextStyle(fontSize: 14),))),
+          Expanded(child: Text('${model.status}',maxLines:2,overflow:TextOverflow.ellipsis,textAlign: TextAlign.center,style: TextStyle(fontSize: 14),)),
         ],
       ),
     );

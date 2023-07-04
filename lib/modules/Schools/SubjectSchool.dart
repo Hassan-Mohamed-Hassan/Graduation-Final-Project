@@ -2,6 +2,7 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:untitled15/Models/SchoolSubject.dart';
+import 'package:untitled15/constants/Comonent.dart';
 import 'package:untitled15/constants/constants.dart';
 import 'package:untitled15/modules/Schools/Bloc/Cubit.dart';
 import 'package:untitled15/modules/Schools/Bloc/States.dart';
@@ -92,6 +93,8 @@ class SubjectSchool extends StatelessWidget {
                         children: [
                           Spacer(),
                           BuiltContainerButton(
+                              color: secondColor,
+                            width: 130,
                               function: (){
                                 showDialog(context: context, builder: (context)=>
                                     Center(
@@ -105,15 +108,15 @@ class SubjectSchool extends StatelessWidget {
 
                                           title:ConditionalBuilder(
                                               condition: state is! AddSubjectLoadingState,
-                                              builder: (context)=> BuiltContainerButton(function: (){
+                                              builder: (context)=> BuiltContainerButton(
+                                                 color: secondColor,
+                                                  function: (){
                                                 var id=int.parse(cubit.numberSubject!);
-
                                                 cubit.AddSubject(SubjectId: id);
                                               }, icon: Icons.add, text: 'Add Subject'),
                                               fallback: (context)=>Center(child: CircularProgressIndicator())
                                           ),
                                           content: Container(
-                                            //   color: Colors.grey[300],
                                             child: FormHelper.dropDownWidgetWithLabel(
                                               context,
                                               'Choose Subject',
@@ -158,30 +161,7 @@ class SubjectSchool extends StatelessWidget {
       ),
     );
   }
-  Widget BuiltContainerButton(
-  {
-    required  Function function,
-    required IconData icon,
-    required String text
-}
-      ){
-    return InkWell(
-      onTap: (){
-        function();
-      } ,
-      child: Container(
-        height: 40,
-        color: Colors.red,
-        child:Row(
-          children: [
-            Icon(icon,color: Colors.white,),
-            SizedBox(width:5 ,),
-            Text(text,style:TextStyle(color: Colors.white) ,)
-          ],
-        ),
-      ),
-    );
-  }
+
   Widget BuiltItemRow(Subject model,ExistsSubjects subject,context){
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -190,6 +170,7 @@ class SubjectSchool extends StatelessWidget {
           Text('${model.name}'),
           Spacer(),
           BuiltContainerButton(
+            width: 90,
               function: (){
                 SchoolCubit.get(context).DeleteSubject(id: subject.id!);
               },

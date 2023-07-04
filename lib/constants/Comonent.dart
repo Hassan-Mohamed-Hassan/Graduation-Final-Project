@@ -90,3 +90,30 @@ void show_Toast({required String message,required Color color,}){
     textColor: Colors.white,
     fontSize: 16.0,
   );}
+Widget BuiltContainerButton(
+    {
+      required  Function function,
+       IconData? icon,
+      required String text,
+      double? width,
+      Color? color,
+    }
+    ){
+  return InkWell(
+    onTap: (){
+      function();
+    } ,
+    child: Container(
+      height: 40,
+      width: width??90,
+      color: color??Colors.red,
+      child:Row(
+        children: [
+          Icon(icon,color: Colors.white,),
+          SizedBox(width:5 ,),
+          Text(text,style:TextStyle(color: Colors.white,),textAlign: TextAlign.center,)
+        ],
+      ),
+    ),
+  );
+}

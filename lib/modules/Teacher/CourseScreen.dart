@@ -82,6 +82,7 @@ class CourseScreen extends StatelessWidget {
 
                                 },
                                 icon: Icons.add,
+                                color:secondColor,
                                 text: 'Add Course'
                             )
                           ],
@@ -101,7 +102,8 @@ class CourseScreen extends StatelessWidget {
       {
         required  Function function,
         IconData? icon,
-        required String text
+        required String text,
+         Color? color
       }
       ){
     return InkWell(
@@ -110,14 +112,17 @@ class CourseScreen extends StatelessWidget {
       } ,
       child: Container(
         height: 40,
-        color: defaultColor,
-        child:Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            // Icon(icon,color: Colors.white,),
-            //SizedBox(width:5 ,),
-            Text(text,style:TextStyle(color: Colors.white) ,)
-          ],
+        color: color??Colors.red,
+        child:Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // Icon(icon,color: Colors.white,),
+              //SizedBox(width:5 ,),
+              Text(text,style:TextStyle(color: Colors.white) ,)
+            ],
+          ),
         ),
       ),
     );
@@ -126,7 +131,7 @@ class CourseScreen extends StatelessWidget {
   Widget BuiltItemRow(Courses model,CubitTeacher cubit,context){
     return  Card(
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(12.0),
         child: Column(
           children: [
             SizedBox(height: 20,),
@@ -135,7 +140,7 @@ class CourseScreen extends StatelessWidget {
                 children: [
                   Text('Name:',style: TextStyle(color: defaultColor),),
                   Spacer(),
-                  Expanded( flex :2,child: Text('${model.name}',maxLines:2,overflow:TextOverflow.ellipsis,)),
+                  Expanded( flex :2,child: Text('${model.name}',textAlign: TextAlign.end,maxLines:2,overflow:TextOverflow.ellipsis,)),
                 ]
             ),
             SizedBox(height: 10,),
@@ -144,7 +149,7 @@ class CourseScreen extends StatelessWidget {
                 children: [
                   Text('Video:',style: TextStyle(color: defaultColor),),
                   Spacer(),
-                  Expanded(flex:1,child: Text('${model.videosCount}')),
+                  Expanded(flex:1,child: Text('${model.videosCount}',textAlign: TextAlign.end,)),
                 ]
             ),
             SizedBox(height: 10,),
@@ -153,7 +158,7 @@ class CourseScreen extends StatelessWidget {
                 children: [
                   Text('For:',style: TextStyle(color: defaultColor),),
                   Spacer(),
-                  Expanded(flex:1,child: Text('${model.forWhich}')),
+                  Expanded(flex:1,child: Text('${model.forWhich}',textAlign: TextAlign.end,)),
                 ]
             ),
             SizedBox(height: 20,),
@@ -178,6 +183,7 @@ class CourseScreen extends StatelessWidget {
 
                         print(model.id);
                       },
+                      color: secondColor,
                       text: 'Show'
                   ),
                 ),

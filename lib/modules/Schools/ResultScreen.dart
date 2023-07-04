@@ -94,9 +94,9 @@ class ResultScreen extends StatelessWidget  {
                           padding: const EdgeInsets.all(8.0),
                           child: Row(
                             children: [
-                              Expanded(child: Text('Room ',maxLines: 1,style: TextStyle(color: Colors.white),)),
-                              Expanded(child: Text('Subject ',maxLines:2,overflow:TextOverflow.ellipsis,style: TextStyle(color: Colors.white),)),
-                              Expanded(child: Text('Status ',maxLines:1,style: TextStyle(color: Colors.white),)),
+                              Expanded(child: Text('Room ',textAlign: TextAlign.center,maxLines: 1,style: TextStyle(color: Colors.white),)),
+                              Expanded(child: Text('Subject ',textAlign: TextAlign.center,maxLines:2,overflow:TextOverflow.ellipsis,style: TextStyle(color: Colors.white),)),
+                              Expanded(child: Text('Status ',textAlign: TextAlign.center,maxLines:1,style: TextStyle(color: Colors.white),)),
 
                             ],
                           ),
@@ -114,18 +114,18 @@ class ResultScreen extends StatelessWidget  {
                                      Expanded(
                                        child: Text(
                                            '${cubit.getAnnouncedModel!.rooms![index].room!.name}',
-                                         maxLines: 2,overflow: TextOverflow.ellipsis,
+                                         maxLines: 2,overflow: TextOverflow.ellipsis,textAlign: TextAlign.center,
 
                                        ),
                                      ),
                                      Expanded(
                                        child: Text(
-                                           '${cubit.getAnnouncedModel!.rooms![index].name}'
+                                           '${cubit.getAnnouncedModel!.rooms![index].name}',textAlign: TextAlign.center,
                                        ),
                                      ),
                                      Expanded(
                                        child: Text(
-                                           'announced'
+                                           'announced',textAlign: TextAlign.center,
                                        ),
                                      ),
 
@@ -148,7 +148,7 @@ class ResultScreen extends StatelessWidget  {
                                       Expanded(
                                         child: Text(
                                             '${cubit.getNotAnnouncedModel!.rooms![index].name}',
-                                          maxLines: 2,overflow: TextOverflow.ellipsis,
+                                          maxLines: 2,textAlign: TextAlign.center,overflow: TextOverflow.ellipsis,
                                         ),
                                       ),
                                       Expanded(
@@ -176,7 +176,9 @@ class ResultScreen extends StatelessWidget  {
                       Row(
                           children: [
                             Spacer(),
-                            BuiltContainerButton(function: (){
+                            BuiltContainerButton(
+                                width: 130,
+                                function: (){
                               showDialog(context: context, builder: (context)=>
                                   Center(
                                     child: SingleChildScrollView(
@@ -187,7 +189,9 @@ class ResultScreen extends StatelessWidget  {
                                         iconPadding: EdgeInsets.all(0),
                                         contentPadding: EdgeInsets.all(10),
 
-                                        title:BuiltContainerButton(function: (){
+                                        title:BuiltContainerButton(
+                                            color: secondColor,
+                                            function: (){
                                           var Roomid=int.parse(cubit.roomId!);
                                           var Student=int.parse(StudentId.text);
                                           var Final=int.parse(FinalDegree.text);
@@ -294,7 +298,9 @@ class ResultScreen extends StatelessWidget  {
                                     ),
                                   )
                               );
-                            }, icon: Icons.add, text: 'Add Result'),
+                            },  color: secondColor,
+                                icon: Icons.add,
+                                text: 'Add Result'),
                           ]
                       )
                     ],
@@ -308,28 +314,5 @@ class ResultScreen extends StatelessWidget  {
       ),
     );
   }
-  Widget BuiltContainerButton(
-      {
-        required  Function function,
-        required IconData icon,
-        required String text
-      }
-      ){
-    return InkWell(
-      onTap: (){
-        function();
-      } ,
-      child: Container(
-        height: 40,
-        color: Colors.red,
-        child:Row(
-          children: [
-            Icon(icon,color: Colors.white,),
-            SizedBox(width:5 ,),
-            Text(text,style:TextStyle(color: Colors.white) ,)
-          ],
-        ),
-      ),
-    );
-  }
+
 }

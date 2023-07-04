@@ -127,12 +127,13 @@ Widget TableItem(subject,index,EducationCubit cubit,context){
                           onPressed: (){
                       double totaldgree=int.parse(cubit.showExams!.exams[index].degree!)/cubit.showExams!.exams[index].questionsCount!;
                       cubit.getquastion(cubit.showExams!.exams[index].id).then((value){
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(builder: (context) => MyQuizPageView(totaldgree,value,cubit.trueAnswers,cubit.showExams!.exams[index].id!)),
+                              (Route<dynamic> route) => false,
+                        );
 
-                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>
-                            MyQuizPageView(totaldgree,value,cubit.trueAnswers,cubit.showExams!.exams[index].id!)));
-
-                      });
-            },icon: Icon(Icons.arrow_forward_ios,color: Colors.white,)),
+            });},icon: Icon(Icons.arrow_forward_ios,color: Colors.white,)),
                     ],
                   ),
                 ),

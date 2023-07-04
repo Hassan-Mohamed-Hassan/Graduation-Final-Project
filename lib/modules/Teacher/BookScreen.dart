@@ -104,14 +104,14 @@ class BookScreen extends StatelessWidget {
                                       ],),
                                       SizedBox(height: 10,),
                                       RatingBar.builder(
-                                        itemBuilder: (context,i)=>Icon(Icons.favorite,color: Colors.deepOrange,size: 16,),
+                                        itemBuilder: (context,i)=>Icon(Icons.star,color: Colors.amber,size: 16,),
                                         onRatingUpdate: (index){
 
                                         },
                                         itemCount: 5,
                                         itemPadding: EdgeInsets.symmetric(horizontal: 5),
                                         initialRating: cubit.getBookModel!.books![0].ratesCount!.toDouble(),
-                                        itemSize: 12,
+                                        itemSize: 14,
                                         direction: Axis.horizontal,
                                         minRating:  cubit.getBookModel!.books![0].ratesCount!.toDouble(),
                                         maxRating: 5,
@@ -135,6 +135,7 @@ class BookScreen extends StatelessWidget {
                                                 function: (){
                                                   cubit.DeleteBook(id: cubit.getBookModel!.books![index].id!);
                                                 },
+                                                color: Colors.red,
                                                 icon: Icons.delete, text: 'Delete'
                                             ),
                                           ),
@@ -179,6 +180,7 @@ class BookScreen extends StatelessWidget {
   Widget BuiltContainerButton(
       {
         required  Function function,
+          Color ?color,
         required IconData? icon,
         required String text
       }
@@ -189,14 +191,17 @@ class BookScreen extends StatelessWidget {
       } ,
       child: Container(
         height: 40,
-        color: Colors.red,
-        child:Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-             Icon(icon,color: Colors.white,),
-            SizedBox(width:5 ,),
-            Text(text,style:TextStyle(color: Colors.white) ,)
-          ],
+        color: color??secondColor,
+        child:Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+               Icon(icon,color: Colors.white,),
+              SizedBox(width:5 ,),
+              Text(text,style:TextStyle(color: Colors.white) ,)
+            ],
+          ),
         ),
       ),
     );

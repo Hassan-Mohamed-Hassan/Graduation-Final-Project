@@ -109,6 +109,7 @@ class RoomsScreen extends StatelessWidget {
                           children: [
                             Spacer(),
                             BuiltContainerButton(
+                                width: 120,
                                 function: (){
                                   showDialog(context: context, builder: (context)=>
                                       Center(
@@ -120,11 +121,14 @@ class RoomsScreen extends StatelessWidget {
                                             iconPadding: EdgeInsets.all(0),
                                             contentPadding: EdgeInsets.all(10),
 
-                                            title:BuiltContainerButton(function: (){
+                                            title:BuiltContainerButton(
+                                                function: (){
                                               var id=int.parse(cubit.numberClass!);
 
                                               cubit.AddRoom(name: text.text, class_id: id);
-                                            }, icon: Icons.add, text: 'Add Room'),
+                                            },
+                                                color: secondColor,
+                                                icon: Icons.add, text: 'Add Room'),
                                             content: Container(
                                               //   color: Colors.grey[300],
                                               child:Column(
@@ -167,6 +171,7 @@ class RoomsScreen extends StatelessWidget {
                                   );
                                 },
                                 icon: Icons.add,
+                                color: secondColor,
                                 text: 'Add Room'
                             )
                           ],
@@ -182,30 +187,7 @@ class RoomsScreen extends StatelessWidget {
       ),
     );
   }
-  Widget BuiltContainerButton(
-      {
-        required  Function function,
-        required IconData icon,
-        required String text
-      }
-      ){
-    return InkWell(
-      onTap: (){
-        function();
-      } ,
-      child: Container(
-        height: 40,
-        color: Colors.red,
-        child:Row(
-          children: [
-            Icon(icon,color: Colors.white,),
-            SizedBox(width:5 ,),
-            Text(text,style:TextStyle(color: Colors.white) ,)
-          ],
-        ),
-      ),
-    );
-  }
+
   Widget BuiltItemRow(Rooms room,ItsClass model,SchoolCubit cubit,context){
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -217,17 +199,20 @@ class RoomsScreen extends StatelessWidget {
           Row(
             children: [
               BuiltContainerButton(
+                  width: 95,
                   function: (){
                    // SchoolCubit.get(context).DeleteRoom(id:room.id!);
                     //cubit.GetStudent(id: model.id!);
                     navigatePush(context:context,widget: StudentSchool(id:room.id!,name:room.name!));
 
                   },
+                  color: secondColor,
                   icon: Icons.person,
                   text: 'Student'
               ),
                 SizedBox(width:5 ,),
               BuiltContainerButton(
+                width: 90,
                   function: (){
                     SchoolCubit.get(context).DeleteRoom(id:room.id!);
                   },

@@ -101,6 +101,8 @@ class TeacherScreen extends StatelessWidget {
                           children: [
                             Spacer(),
                             BuiltContainerButton(
+                              width: 140,
+                                color: secondColor,
                                 function: (){
                                   showDialog(context: context, builder: (context)=>
                                       Center(
@@ -122,7 +124,10 @@ class TeacherScreen extends StatelessWidget {
                                                     cubit.AddTeacher(emailTeacher: email.text,studentId: id);
 
                                                   }
-                                                  }, icon: Icons.add, text: 'Add Teacher'),
+                                                  },
+                                                      color: secondColor,
+                                                      icon: Icons.add,
+                                                      text: 'Add Teacher'),
                                                   fallback: (context)=>Center(child: CircularProgressIndicator())
                                               ),
                                               content: Container(
@@ -192,30 +197,7 @@ class TeacherScreen extends StatelessWidget {
       ),
     );
   }
-  Widget BuiltContainerButton(
-      {
-        required  Function function,
-        required IconData icon,
-        required String text
-      }
-      ){
-    return InkWell(
-      onTap: (){
-        function();
-      } ,
-      child: Container(
-        height: 40,
-        color: Colors.red,
-        child:Row(
-          children: [
-            Icon(icon,color: Colors.white,),
-            SizedBox(width:5 ,),
-            Text(text,style:TextStyle(color: Colors.white) ,)
-          ],
-        ),
-      ),
-    );
-  }
+
   Widget BuiltItemRow(Teachers model,context){
     return Padding(
       padding: const EdgeInsets.all(8.0),

@@ -4,6 +4,7 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:untitled15/Models/GetAbsenceSchoolTOTeacherModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:untitled15/constants/Comonent.dart';
 import 'package:untitled15/constants/constants.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
@@ -86,10 +87,11 @@ class AbsenceScreen extends StatelessWidget {
                         ),
                         cubit.getAbsenceSchoolTOTeacherModel!.absence!.length==0?
                         BuiltContainerButton(
+                          width: 100,
                             function: (){
                               cubit.AddAbsence();
-
                             },
+                            color: secondColor,
                             text: 'Done'
                         ):
                         Container(
@@ -120,30 +122,6 @@ class AbsenceScreen extends StatelessWidget {
     );
   }
 
-  Widget BuiltContainerButton(
-      {
-        required  Function function,
-        required String text
-      }
-      ){
-    return InkWell(
-      onTap: (){
-        function();
-      } ,
-      child: Container(
-          height: 40,
-          width: double.infinity,
-          color: Colors.red,
-          child:Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(text,style:TextStyle(color: Colors.white) ,),
-            ],
-          )
-
-      ),
-    );
-  }
   Widget BuiltItemRow(Teachers model,length,index,context){
 
     return

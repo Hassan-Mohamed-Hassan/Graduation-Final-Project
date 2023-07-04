@@ -115,6 +115,8 @@ class ClassesScreen extends StatelessWidget {
                           children: [
                             Spacer(),
                             BuiltContainerButton(
+                                color: secondColor,
+                              width: 130,
                                 function: (){
                                   showDialog(context: context, builder: (context)=>
                                       Center(
@@ -126,7 +128,10 @@ class ClassesScreen extends StatelessWidget {
                                             iconPadding: EdgeInsets.all(0),
                                             contentPadding: EdgeInsets.all(10),
 
-                                            title:BuiltContainerButton(function: (){
+                                            title:BuiltContainerButton(
+                                                width:130,
+                                                color: secondColor,
+                                                function: (){
                                               var id=int.parse(cubit.numberClass!);
 
                                               cubit.AddClass(idClass: id);
@@ -177,30 +182,7 @@ class ClassesScreen extends StatelessWidget {
       ),
     );
   }
-  Widget BuiltContainerButton(
-      {
-        required  Function function,
-        required IconData icon,
-        required String text
-      }
-      ){
-    return InkWell(
-      onTap: (){
-        function();
-      } ,
-      child: Container(
-        height: 40,
-        color: Colors.red,
-        child:Row(
-          children: [
-            Icon(icon,color: Colors.white,),
-            SizedBox(width:5 ,),
-            Text(text,style:TextStyle(color: Colors.white) ,)
-          ],
-        ),
-      ),
-    );
-  }
+
   Widget BuiltItemRow(Classes model,context){
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -210,6 +192,7 @@ class ClassesScreen extends StatelessWidget {
           Text('${model.itsClass!.name}'),
           Text('${model.roomsCount}'),
           BuiltContainerButton(
+            width: 90,
               function: (){
                 SchoolCubit.get(context).DeleteClass(id: model.itsClass!.id!);
               },
